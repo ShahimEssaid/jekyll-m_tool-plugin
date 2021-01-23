@@ -2,6 +2,7 @@
 require "jekyll"
 
 require_relative "m_tool/version"
+require_relative "m_tool/m_tool_plugin"
 
 module Jekyll
   module MTool

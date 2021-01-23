@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+set -o noclobber
+shopt -s nullglob
+set -x
+
+# See http://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+
+EXAMPLEDIR=$(dirname ${DIR})
+
+docker pull sessaid/dev:ub-jekyll-0.0.1-dev
+docker run \
+	-d \
+	-v "${EXAMPLEDIR}/volume":/volume \
+	--env JUID=$(id -u) \
+	--env JGID=$(id -g) \
+	--env S6_KEEP_ENV=1 \
+	--env S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
+	-p 127.0.0.1:5000:4000 \
+	-p 127.0.0.1:5001:4001 \
+	--name "sessaid_dev_ub-jekyll-0.0.1-dev_1" \
+    sessaid/dev:ub-jekyll-0.0.1-dev
