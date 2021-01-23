@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require "jekyll"
 
 require_relative "m_tool/version"
 
