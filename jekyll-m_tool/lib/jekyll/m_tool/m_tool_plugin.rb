@@ -5,7 +5,7 @@ module Jekyll
     # Jekyll generator plugin
     class MToolPlugin < Generator
       def initialize(config)
-        super
+        super config
         pp "============= PLUGIN LOADED ==================="
       end
     end

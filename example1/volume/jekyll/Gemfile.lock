@@ -1,6 +1,6 @@
 GIT
   remote: https://github.com/ShahimEssaid/jekyll-mtool.git
-  revision: 1d666695ef781221c7e19465ec016a3dd11f052a
+  revision: 144feb52f67dc003f0da01c38cd6ee675a93af71
   branch: main
   glob: jekyll-m_tool/jekyll-m_tool.gemspec
   specs:
