@@ -1,3 +1,0 @@
-#!/usr/bin/env ruby
-
-require "jekyll/m_tool"

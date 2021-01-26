@@ -8,6 +8,10 @@ module Jekyll
         super config
         pp "============= PLUGIN LOADED ==================="
       end
+      
+      def generate(site)
+      	pp "================= PLUGIN GENERATING 2 ==========="
+      end
     end
   end
 end

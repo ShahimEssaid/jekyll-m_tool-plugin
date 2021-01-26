@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/jekyll-m_tool/.idea/jekyll-m_tool.iml" filepath="$PROJECT_DIR$/jekyll-m_tool/.idea/jekyll-m_tool.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/jekyll-mtool.iml" filepath="$PROJECT_DIR$/.idea/jekyll-mtool.iml" />
     </modules>
   </component>

@@ -14,18 +14,22 @@ while [ -h "$SOURCE" ]; do
   [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
 done
 DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+MTOOL_DIR=$(dirname ${DIR})
 
-EXAMPLEDIR=$(dirname ${DIR})
+. "$DIR"/.config
 
-docker pull sessaid/dev:ub-jekyll-0.0.1-dev
+docker stop "${JCONT_PREFIX}_bin" || true
+docker rm "${JCONT_PREFIX}_bin" || true
+
 docker run \
-	-d \
-	-v "${EXAMPLEDIR}/volume":/volume \
-	--env JUID=$(id -u) \
-	--env JGID=$(id -g) \
-	--env S6_KEEP_ENV=1 \
-	--env S6_BEHAVIOUR_IF_STAGE2_FAILS=2 \
-	-p 127.0.0.1:5000:4000 \
-	-p 127.0.0.1:5001:4001 \
-	--name "sessaid_dev_ub-jekyll-0.0.1-dev_1" \
-    sessaid/dev:ub-jekyll-0.0.1-dev
+	-v "${MTOOL_DIR}":/volume \
+	--env JUID \
+	--env JGID \
+	--env S6_KEEP_ENV \
+	--env S6_BEHAVIOUR_IF_STAGE2_FAILS \
+	-p 127.0.0.1:4000:4000 \
+	-p 127.0.0.1:4001:4001 \
+	-p 127.0.0.1:1234:1234 \
+	-p 127.0.0.1:4022:22 \
+	--name "${JCONT_PREFIX}_bin" \
+    ${JIMAGE_NAME}
