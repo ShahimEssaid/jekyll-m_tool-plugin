@@ -1,0 +1,22 @@
+#!/usr/bin/env bash
+set -e
+set -u
+set -o pipefail
+set -o noclobber
+shopt -s nullglob
+set -x
+
+# See http://stackoverflow.com/questions/59895/getting-the-source-directory-of-a-bash-script-from-within
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do
+  DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE"
+done
+DIR="$(cd -P "$(dirname "$SOURCE")" && pwd)"
+MTOOL_DIR=$(dirname ${DIR})
+
+. "$DIR"/.config
+
+
+# https://superuser.com/questions/181517/how-to-execute-a-command-whenever-a-file-changes
