@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jekyll-m_tool (0.0.1)
+    jekyll-m_tool (0.0.1.alpha.1)
 
 GEM
   remote: https://rubygems.org/
